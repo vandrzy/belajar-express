@@ -4,8 +4,8 @@ export const createUser = (data) => {
     return User.create(data);
 }
 
-export const getAllUser = (data) => {
-    return User.find();
+export const getAllUser = (shortBy, order,limit, offset) => {
+    return User.find().sort({[shortBy]: order}).limit(limit).skip(offset);
 }
 
 export const getById  = (id) => {
@@ -13,7 +13,11 @@ export const getById  = (id) => {
 }
 
 export const getByName = (name) => {
-    return User.find({name});
+    const filter =  name ? {
+        name: {$regex: name , $options: "i"} // mencari name sesuai dengan %name% options : "i" membuat pencarian bersifat caseinsensitive
+    } : {};
+
+    return User.find(filter);
 }
 
 export const updateUserById = (id, data) => {

@@ -31,6 +31,25 @@ export const validateRequestBodyZod = (schema) => (req, res, next) => {
 };
 
 
+export const validateRequestQuery = (schema) => (req, res, next) => {
+  const result = schema.safeParse(req.query);
+
+  if (!result.success) {
+    return next(
+      new AppError(
+        result.error.errors.map(e => e.message).join(', '),
+        400,
+      )
+    );
+  }
+
+  req.validatedQuery = result.data;
+  next();
+
+
+}
+
+
 
 
 

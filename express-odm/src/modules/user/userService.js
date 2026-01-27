@@ -13,8 +13,9 @@ export const createUser = async (name, email, age) => {
 };
 
 
-export const getAllUser = async() => {
-    return await userRepository.getAllUser();
+export const getAllUser = async(sortBy, order, limit, offset) => {
+    const orderValue = order === "asc" ? 1 : -1;
+    return await userRepository.getAllUser(sortBy, orderValue, limit, offset);
 };
 
 export const getUserById = async(id) => {
@@ -22,6 +23,12 @@ export const getUserById = async(id) => {
     if (!user) throw new AppError("User tidak ditemukan", 404);
     return user;
 };
+
+export const getUserByName = async(name) => {
+    const user = await userRepository.getByName(name);
+    if (!user) throw new AppError("User tidak ditemukan", 404);
+    return user;
+}
 
 export const updateUserById = async(id, data) => {
     const user = await userRepository.updateUserById(id, data);

@@ -17,7 +17,8 @@ export const createUser = async (req, res, next) => {
 
 export const getAllUser = async(req, res, next) => {
     try {
-        const users = await userService.getAllUser();
+        const {shortBy, order, limit, offset} = req.validatedQuery;
+        const users = await userService.getAllUser(shortBy, order, limit, offset);
         res.status(200).json(successResponse('Berhasil menampilkan user', users));
     } catch (error) {
         next(error);
@@ -29,6 +30,16 @@ export const getUserById = async(req, res, next) => {
         const id = req.params.id;
         const user = await userService.getUserById(id);
         res.status(200).json(successResponse('User ditemukan', user))
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const getUserByName = async(req, res, next) => {
+    try {
+        const {name} = req.validatedQuery;
+        const user = await userService.getUserByName(name);
+        res.status(200).json(successResponse('User ditemukan', user));
     } catch (error) {
         next(error);
     }
