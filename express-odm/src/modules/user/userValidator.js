@@ -32,7 +32,7 @@ export const updateUserRequest = z.object({
 export const getAllUserQuery = z.object({
     sortBy: z.enum(['name', 'age']).optional().default('name'),
     order: z.enum(['asc', 'desc']).optional().default('asc'),
-    limit: z.coerce.number('limit harus angka').int().min(1).max(100).optional().default(2),
+    limit: z.coerce.number('limit harus angka').int().min(1).max(100).optional().default(5),
     offset: z.coerce.number('offset harus angka').int().min(0).optional().default(0)
 })
 

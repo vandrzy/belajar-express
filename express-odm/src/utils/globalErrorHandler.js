@@ -3,6 +3,13 @@ import {failedResponse} from './response.js';
 const globalErrorHandler = (err, req, res, next) => {
     // console.log(err.name);
     // console.log(err.code)
+    console.error({
+        message: err.message,
+        stack: err.stack,
+        path: req.originalUrl,
+        method: req.method,
+        time: new Date().toISOString()
+    });
     if (err.name === 'ValidationError'){
         return res.status(400).json(failedResponse(err.message, err.name));
     }
@@ -11,13 +18,6 @@ const globalErrorHandler = (err, req, res, next) => {
         return res.status(400).json(failedResponse(err.message, err.name));
     }
 
-    console.error({
-        message: err.message,
-        stack: err.stack,
-        path: req.originalUrl,
-        method: req.method,
-        time: new Date().toISOString()
-    });
 
     const statusCode = err.statusCode || 500;
 

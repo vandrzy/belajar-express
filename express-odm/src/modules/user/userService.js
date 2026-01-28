@@ -1,5 +1,5 @@
 import * as userRepository from './userRepository.js';
-import AppError from '../../utils/appError.js'
+import AppError from '../../utils/appError.js';
 
 
 export const createUser = async (name, email, age) => {
