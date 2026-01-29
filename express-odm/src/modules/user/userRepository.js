@@ -9,7 +9,7 @@ export const getAllUser = (shortBy, order,limit, offset) => {
 }
 
 export const getById  = (id) => {
-    return User.findById(id);
+    return User.findById(id).populate('roles', 'name');
 }
 
 export const getByName = (name) => {
@@ -31,3 +31,18 @@ export const deleteUserById = (id) => {
     return User.findByIdAndDelete(id);
 }
 
+export const addRoleToUser = async (userId, roleId) => {
+    return await User.findByIdAndUpdate(
+        userId, 
+        {$addToSet: {roles: roleId},}, 
+        {new: true}
+    )
+}
+
+export const removeRoleFromUser = async (userId, roleId) => {
+    return await User.findByIdAndUpdate(
+        userId, 
+        {$pull: {roles: roleId},}, 
+        {new: true}
+    )
+}

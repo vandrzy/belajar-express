@@ -11,6 +11,8 @@ router.get("/find", validator.validateRequestQuery(userValidator.getUserByNameRe
 router.get("/:id", userController.getUserById);
 router.patch("/:id", validator.validateRequestBodyZod(userValidator.updateUserRequest), userController.updateUserById);
 router.delete("/:id", userController.deleteUserById);
+router.patch('/:userId/:roleId', userController.asignRole);
+router.patch('/r/:userId/:roleId', userController.removeRole);
 
 export default router;
 

@@ -65,3 +65,23 @@ export const deleteUserById = async (req, res, next) => {
         next(error);
     }
 }
+
+export const asignRole = async (req, res, next) => {
+    try {
+        const {userId, roleId} = req.params;
+        const result = await userService.asignRole(userId, roleId);
+        res.status(200).json(successResponse('Berhasil menambahkan role', result));
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const removeRole = async (req, res, next) => {
+    try {
+        const {userId, roleId} = req.params;
+        const result = await userService.removeRole(userId, roleId);
+        res.status(200).json(successResponse('Berhasil menghilangkan role', result));
+    } catch (error) {
+        next(error);
+    }
+}

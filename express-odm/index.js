@@ -6,6 +6,7 @@ import connectDB from './src/config/db.js';
 import userRouter from './src/modules/user/userRoutes.js';
 import globalErrorHandler from './src/utils/globalErrorHandler.js';
 import postRouter from './src/modules/post/postRoute.js';
+import roleRouter from './src/modules/role/roleRoute.js';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use("/api/user", userRouter);
 app.use('/api/post', postRouter);
+app.use('/api/role', roleRouter);
 
 
 app.use(globalErrorHandler);

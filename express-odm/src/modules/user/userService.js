@@ -1,4 +1,5 @@
 import * as userRepository from './userRepository.js';
+import * as roleRepository from '../role/roleRepository.js'
 import AppError from '../../utils/appError.js';
 
 
@@ -41,3 +42,16 @@ export const deleteUserById = async(id) => {
     if (!user) throw new AppError("User tidak ditemukan", 404);
 }
 
+export const asignRole = async (userId, roleId) => {
+    const user = await userRepository.addRoleToUser(userId, roleId);
+    const role = await roleRepository.inputUserToRole(roleId, userId);
+
+    return user;
+}
+
+export const removeRole = async (userId, roleId) => {
+    const user = await userRepository.removeRoleFromUser(userId, roleId);
+    const role = await roleRepository.removeUserFromRole(roleId, userId);
+
+    return user
+}

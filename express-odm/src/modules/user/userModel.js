@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema(
             type: Number,
             min: 0,
             required: [true, "Umur wajib diisi"]
+        },
+        roles: {
+            type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }],
+            default: []
         }
     },
     {
