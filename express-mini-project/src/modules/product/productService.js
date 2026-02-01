@@ -16,7 +16,7 @@ export const createProduct = async (name, description, userId) => {
 
 export const getAllProducts = async (sortBy, order, limit, offset) => {
     const products = await productRepository.getAllProduct(sortBy, order, limit, offset);
-    if (!products) throw new AppError('Produk tidak ada', 404);
+    if (products.length === 0) throw new AppError('Produk tidak ada', 404);
     return products;
 };
 
@@ -40,6 +40,6 @@ export const getProductById = async (id) => {
 
 export const deleteProductById = async (id) => {
     const deletedProduct = await productRepository.deleteProductById(id);
-    if (!product) throw new AppError('Produk tidak ada', 404);
+    if (!deletedProduct) throw new AppError('Produk tidak ada', 404);
     return deletedProduct;
 }

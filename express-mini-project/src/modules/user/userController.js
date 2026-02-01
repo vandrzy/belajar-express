@@ -15,7 +15,7 @@ export const createUser = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {
     try {
         const data = req.body;
-        const {id} = req.prams;
+        const {id} = req.params;
         const user = await userService.updateUser(id, data);
         res.status(200).json(successResponse('Berhasil memperbarui user', user));
     } catch (error) {
@@ -46,7 +46,7 @@ export const deleteUserById =  async (req, res, next) => {
     try {
         const {id} = req.params;
         await userService.deleteUserById(id);
-        res.status(200).json(successResponse('User ditemukan'));
+        res.status(200).json(successResponse('User dihapus'));
     } catch (error) {
         next(error);
     }

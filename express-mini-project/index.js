@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
-import connectDB from './src/config/db';
+import connectDB from './src/config/db.js';
 import { globalErrorHandler } from './src/utils/globalErrorHandler.js';
 import userRouter from './src/modules/user/userRoute.js';
 import productRouter from './src/modules/product/productRoute.js';

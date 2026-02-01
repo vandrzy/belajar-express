@@ -10,6 +10,7 @@ router.post('/', requestValidator.validateRequestBody(userRequest.createUserRequ
 router.patch('/:id', requestValidator.validateRequestBody(userRequest.updateUserRequestBody), userController.updateUser);
 router.get('/', userController.getAllUsers);
 router.get('/:id', userController.getUserById);
+router.delete('/:id', userController.deleteUserById);
 
 
 

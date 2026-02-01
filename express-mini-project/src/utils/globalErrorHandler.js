@@ -10,10 +10,13 @@ export const globalErrorHandler = (err, req, res, next) => {
     });
 
     if (err.name === 'ValidationError'){
-        return res(400).json(failedResponse(err.message, err.name))
+        return res.status(400).json(failedResponse(err.message, err.name))
     }
     if (err.name === 'MongoServerError'){
-        return res(400).json(failedResponse(err.message, err.name))
+        return res.status(400).json(failedResponse(err.message, err.name))
+    }
+    if (err.name === 'MongooseError'){
+        return res.status(400).json(failedResponse(err.message, err.name))
     }
 
     const statusCode=err.statusCode || 500;

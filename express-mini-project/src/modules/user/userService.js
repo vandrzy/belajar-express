@@ -17,7 +17,7 @@ export const updateUser = async (id, data) => {
 
 export const getAllUsers = async () => {
     const users = await userRepository.getAllUsers();
-    if (!users) throw new AppError('User belum ada', 404);
+    if (users.length === 0) throw new AppError('User belum ada', 404);
     return users
 }
 

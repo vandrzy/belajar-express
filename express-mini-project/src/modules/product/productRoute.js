@@ -9,7 +9,7 @@ router.post('/', requestValidator.validateRequestBody(productRequest.createProdu
 router.get('/', requestValidator.validateRequestQuery(productRequest.paginationRequestQuery), productController.getAllProducts);
 router.patch('/:id', requestValidator.validateRequestBody(productRequest.updateProductRequestBody), requestValidator.validateRequestQuery(productRequest.userIdRequestQuery), productController.updateProduct);
 router.get('/:id', productController.getProductById);
-router.get('/:userId',  productController.getProductByUser);
+router.get('/user/:userId',  productController.getProductByUser);
 router.delete('/:id', productController.deleteProductById);
 
 export default router;
