@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import connectDB from './src/config/db.js';
 import globalErrorHandler from './src/utils/globalErrorHandler.js';
 import authRoute from './src/modules/auth/authRoute.js';
+import userRoute from './src/modules/user/userRoute.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(morgam('dev'));
 
 app.use('/api/auth', authRoute);
+app.use('/api/user', userRoute);
 
 
 app.use(globalErrorHandler);

@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Password wajib diisi']
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        required: true,
+        default: 'user'
     }
 },{
     timestamps: true

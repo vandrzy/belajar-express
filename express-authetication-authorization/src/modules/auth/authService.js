@@ -1,7 +1,7 @@
 import AppError from '../../utils/appError.js';
 import {createUser, getUserByEmail} from '../user/userRepository.js';
 import bcrypt from 'bcrypt';
-import crypto from 'crypto';
+import { generateToken } from './jwtService.js';
 
 const SALT_ROUNDS = 10;
 
@@ -26,8 +26,10 @@ export const login = async (email, password) => {
     const passwordValidation = await bcrypt.compare(password, user.password);
     if (!passwordValidation) throw new AppError('Email atau password salah', 401);
 
+    const token = generateToken(user.role, user.username, user.email);
+
     return {
         login: true,
-        token: crypto.randomUUID()
+        token
     };
 }
