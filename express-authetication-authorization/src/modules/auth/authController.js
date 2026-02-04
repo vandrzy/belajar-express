@@ -20,3 +20,12 @@ export const loginUser = async (req, res, next) => {
         next(error);
     }
 }
+
+export const generateAdmin = async (req, res, next) => {
+    try {
+        const result = await authService.generateAdmin();
+        res.status(201).json(successResponse('Berhasil melakukan registrasi', result));
+    } catch (error) {
+        next(error);
+    }
+}

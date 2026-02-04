@@ -12,6 +12,6 @@ export const failedResponse = (message, error = null) => {
         success: false,
         timestamps: new Date().toISOString(),
         message: message,
-        data: data
+        error
     }
 }

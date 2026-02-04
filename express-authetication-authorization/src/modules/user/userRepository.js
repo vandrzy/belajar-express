@@ -8,3 +8,7 @@ export const createUser = async (data) => {
 export const getUserByEmail = async (email) => {
     return await User.findOne({email});
 }
+
+export const getAllUsers = async () => {
+    return await User.find();
+};

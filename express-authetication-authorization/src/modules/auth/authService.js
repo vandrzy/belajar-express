@@ -33,3 +33,15 @@ export const login = async (email, password) => {
         token
     };
 }
+
+export const generateAdmin = async () => {
+    const password = await bcrypt.hash('admin', SALT_ROUNDS);
+    const admin = {
+        username: 'admin',
+        password,
+        email: 'admin@ad.com',
+        role: 'admin'
+    };
+
+    return await createUser(admin)
+}
