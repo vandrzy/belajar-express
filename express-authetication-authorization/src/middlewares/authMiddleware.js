@@ -1,4 +1,4 @@
-import { verifyAccessToken } from "../modules/auth/jwtService.js";
+import { verifyAccessToken } from "../utils/jwt.js";
 import AppError from "../utils/appError.js";
 
 const authMiddleware = (req, res, next) => {

@@ -8,5 +8,8 @@ const route = Router();
 route.post('/register', validator.validateRequestBody(authRequest.registerUserRequest), authController.registerUser);
 route.post('/login', validator.validateRequestBody(authRequest.loginUserRequest), authController.loginUser);
 route.post('/admin', authController.generateAdmin);
+route.post('/logout', authController.logout);
+route.post('/refresh', authController.refresh);
+
 
 export default route;
