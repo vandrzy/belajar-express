@@ -12,6 +12,8 @@ import { globalLimiter } from './src/middlewares/globalLimiter.js';
 
 dotenv.config();
 
+import cloudinary from './src/config/cloudinary.js';
+
 
 const app = express();
 
@@ -46,6 +48,11 @@ app.use('/api/user', globalLimiter, userRoute);
 app.use(globalErrorHandler);
 
 connectDB().then(()=> {
+    console.log({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
     app.listen(PORT, () => {
         console.log('Server berjalan pada port: ', PORT);
     });

@@ -18,3 +18,14 @@ export const getAllUsers = async(req, res, next) => {
         next(error);
     }
 }
+
+export const uploadAvatar = async(req, res, next) => {
+    try {
+        const image = req.file;
+        const email = req.user.email;
+        const result = await userService.uploadAvatarImage(email, image);
+        res.status(200).json(successResponse('Berhasil menambahkan avatar', result))
+    } catch (error) {
+        next(error);
+    }
+}

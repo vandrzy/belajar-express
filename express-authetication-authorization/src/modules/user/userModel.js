@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         required: true,
         default: 'user'
+    },
+    imageUrl: {
+        type: String,
+        default: 'belum ada'
+    },
+    imagePublicId: {
+        type: String,
+        default: 'Belum ada'
     }
 },{
     timestamps: true
