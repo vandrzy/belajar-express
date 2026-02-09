@@ -48,7 +48,7 @@ export const logout = async (req, res) => {
         await authService.removeToken(token);
     }
     res.clearCookie('refreshToken');
-    res.status(204);
+    res.status(204).end();
 }
 
 export const generateAdmin = async (req, res, next) => {
