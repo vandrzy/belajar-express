@@ -1,7 +1,8 @@
 import { ErrorRequestHandler } from "express";
 import { failedResponse } from "./response";
+import { logger } from "../config/logger";
 const globalErrorHandler : ErrorRequestHandler = (err, req, res, next) => {
-    console.error({
+    logger.error({
         message: err.message,
         stack: err.stack,
         path: req.originalUrl,

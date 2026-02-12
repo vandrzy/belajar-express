@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import connetDB from './config/db';
 import globalErrorHandler from './utils/globalErrorHandler';
 import authRoute from './modules/auth/authRoute';
+import { requestLogger } from './middlewares/loggerMiddleware';
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -13,7 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(requestLogger);
 
 app.use('/api/auth', authRoute);
 
